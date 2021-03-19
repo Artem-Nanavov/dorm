@@ -1,0 +1,33 @@
+@import '../../../../styles/colors.scss';
+@import '../../../../styles/mixins.scss';
+
+.loginForm {
+	border: 1px solid $color1;
+	width: 400px;
+	padding: 8px;
+	border-radius: 3px;
+
+	&__title {
+		font-size: 18px;
+		text-align: center;
+	}
+
+	&__fields {
+		margin: 16px 0;
+		@include display(grid);
+		@include grid-gap(16px)
+	}
+
+	.changeAuth {
+		text-align: center;
+		cursor: pointer;
+		font-size: 12px;
+		margin-top: 8px;
+	}
+
+	&__name {
+		@include display(grid);
+		@include grid-template-columns(1fr 1fr);
+		@include grid-column-gap(24px);
+	}
+}

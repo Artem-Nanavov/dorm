@@ -1,11 +1,15 @@
 import * as React from 'react';
-import {Route, Switch} from 'react-router-dom';
+import {Route, Switch, Redirect} from 'react-router-dom';
 import {compose} from 'redux';
 import {hot} from 'react-hot-loader/root';
+import Authorization from 'pages/Authorization';
 
 const Routes = () => (
 	<Switch>
-		<Route exact path="/" render={() => <h1>TITLE</h1>} />
+		<Route exact path="/">
+			<Redirect to="/login" />
+		</Route>
+		<Route exact path="/login" component={Authorization} />
 	</Switch>
 );
 

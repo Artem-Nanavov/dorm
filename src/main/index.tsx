@@ -12,6 +12,8 @@ import createRootReducer from './rootReducer';
 import rootSaga from './rootSaga';
 import Routes from './Routes';
 
+import '../styles/nullstyles.css';
+
 export const history = createHistory();
 
 const sagaMiddleware = createSagaMiddleware();
