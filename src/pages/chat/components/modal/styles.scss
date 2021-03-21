@@ -1,0 +1,22 @@
+@import '../../../../styles/colors.scss';
+@import '../../../../styles/mixins.scss';
+
+.chat {
+	&__modal {
+		width: 100vw;
+		height: 100vh;
+		@include display(flex);
+		@include position(absolute);
+		top: 0;
+		left: 0;
+		@include align-items(center);
+		@include justify-content(center);
+	}
+
+	&__modalContent {
+		width: 900px;
+		padding: 8px;
+		background-color: #FFF;
+		border-radius: 3px;
+	}
+}

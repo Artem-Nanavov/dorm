@@ -5,8 +5,16 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import styles from './styles.scss';
 
-const Form = () => {
-	const [isReg, setIsReg] = useState(false);
+interface IForm {
+	loginReqSaga: (pws: string, email: string) => void,
+	regReqSaga: (pws: string, email: string, username: string) => void,
+}
+
+const Form = ({
+	loginReqSaga,
+	regReqSaga,
+}: IForm) => {
+	const [isReg, setIsReg] = useState(true);
 
 	const [email, setEmail] = useState('');
 	const [pws, setPws] = useState('');
@@ -21,10 +29,18 @@ const Form = () => {
 	const loginHandler = useCallback(() => {
 		if (isDisabledBtn) return;
 
-		console.log('login');
-	}, []);
+		try {
+			if (!isReg) {
+				regReqSaga(email, pws, `${firstName} ${lastName}`);
+			} else {
+				loginReqSaga(email, pws);
+			}
+		} catch (e) {
+			console.log('e', e.message);
 
-	const changeIsReg = () => setIsReg(!isReg);
+			alert('Error');
+		}
+	}, [email, pws, isDisabledBtn, firstName, lastName, isReg]);
 
 	return (
 		<form className={styles.loginForm} noValidate autoComplete="off">
@@ -32,7 +48,7 @@ const Form = () => {
 
 			<div className={styles.loginForm__fields}>
 				{
-					isReg && (
+					!isReg && (
 						<div className={styles.loginForm__name}>
 							<TextField
 								value={firstName}
@@ -84,12 +100,12 @@ const Form = () => {
 					onClick={loginHandler}
 					disabled={isDisabledBtn}
 				>
-					Войти
+					{isReg ? 'Войти' : 'Зарегестрироваться'}
 				</Button>
 			</div>
 
 			<p
-				onClick={changeIsReg}
+				onClick={() => setIsReg(!isReg)}
 				className={styles.changeAuth}
 			>
 				{isReg ? 'Зарегестрироваться' : 'Войти'}

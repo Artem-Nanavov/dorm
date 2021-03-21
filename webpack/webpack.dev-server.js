@@ -3,6 +3,7 @@ const WebpackDevServer = require('webpack-dev-server');
 
 const webpackConfig = require('./webpack.development.config');
 const { port, host } = require('../config/dev');
+const env = require('../src/envConfig');
 
 const options = {
 	contentBase: false,
@@ -17,7 +18,20 @@ const options = {
 	watchOptions: {
 		ignored: /node_modules/,
 	},
-	proxy: {},
+	proxy: {
+		'/auth': {
+			target: `${env.server_api}auth/`,
+			pathRewrite: { '^/auth': '' },
+			changeOrigin: true,
+			secure: false,
+		},
+		'/user': {
+			target: `${env.server_api}user/`,
+			pathRewrite: { '^/user': '' },
+			changeOrigin: true,
+			secure: false,
+		},
+	},
 };
 
 WebpackDevServer.addDevServerEntrypoints(webpackConfig, options);

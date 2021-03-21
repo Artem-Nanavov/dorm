@@ -1,0 +1,12 @@
+@import '../../styles/colors.scss';
+@import '../../styles/mixins.scss';
+
+.chat {
+	@include display(grid);
+	@include grid-template-columns(1fr);
+
+	&__rooms {
+		width: 100vw;
+		height: 100%;
+	}
+}

@@ -1,0 +1,31 @@
+@import '../../../../styles/colors.scss';
+@import '../../../../styles/mixins.scss';
+
+.chat {
+	height: 100vh;
+	@include display(grid);
+	@include grid-template-rows(56px 1fr 46px);
+	@include overflow(auto);
+
+	&__header {
+		background-color: #FF0000;
+	}
+
+	&__modal {
+		width: 100vw;
+		height: 100vh;
+		@include display(flex);
+		@include position(absolute);
+		top: 0;
+		left: 0;
+		@include align-items(center);
+		@include justify-content(center);
+	}
+
+	&__modalContent {
+		width: 900px;
+		padding: 8px;
+		background-color: #FFF;
+		border-radius: 3px;
+	}
+}

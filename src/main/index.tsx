@@ -1,6 +1,7 @@
 import {ConnectedRouter, routerMiddleware} from 'connected-react-router';
 import createHistory from 'history/createBrowserHistory';
 import * as React from 'react';
+import { io } from 'socket.io-client';
 import {render} from 'react-dom';
 import {Provider} from 'react-redux';
 import {applyMiddleware, createStore} from 'redux';
@@ -18,6 +19,8 @@ export const history = createHistory();
 
 const sagaMiddleware = createSagaMiddleware();
 const rootReducer = createRootReducer(history);
+
+export const socket = io('http://192.168.43.13:8000', {});
 
 export type RootState = StateType<typeof rootReducer>;
 

@@ -47,7 +47,7 @@ module.exports = {
 		'@typescript-eslint/no-unused-vars': ['error', {vars: 'all', args: 'after-used', ignoreRestSiblings: false}],
 		'react/jsx-props-no-spreading': 'off',
 		'no-autofocus': 'off',
-		'max-len': ['error', {code: 120}],
+		'max-len': ['error', {code: 135}],
 		'no-underscore-dangle': 'off',
 		'jsx-a11y/label-has-associated-control': [2, {assert: 'either', depth: 25}],
 	},

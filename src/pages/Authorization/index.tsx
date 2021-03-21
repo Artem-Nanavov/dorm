@@ -1,11 +1,22 @@
 import React from 'react';
-import Form from './components/form';
+import { Redirect } from 'react-router-dom';
+import Form from './containers/form';
 import styles from './styles.scss';
 
-const index = () => (
-	<div className={styles.container}>
-		<Form />
-	</div>
-);
+interface IAuthPage {
+	isAuth: boolean;
+}
 
-export default index;
+const AuthPage = ({
+	isAuth,
+}: IAuthPage) => {
+	if (isAuth === true) return <Redirect to="/chat" />;
+
+	return (
+		<div className={styles.container}>
+			<Form />
+		</div>
+	);
+};
+
+export default AuthPage;
