@@ -23,5 +23,13 @@ declare module '*.jpeg' {
 	export default content;
 }
 
+declare module '*.jpeg' {
+	const content: any;
+	export default content;
+}
+
+declare module '*.jpg';
+declare module '*.jpeg';
+declare module '*.png';
 declare module 'react-context-menu';
 declare module 'react-simple-timefield';

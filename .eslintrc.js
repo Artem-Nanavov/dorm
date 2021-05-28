@@ -33,9 +33,10 @@ module.exports = {
 		'@typescript-eslint',
 	],
 	rules: {
+		'eslintjsx-a11y/alt-text': 'off',
 		'react/prop-types': 'off',
 		camelcase: 'off',
-		indent: [2, 'tab'],
+		indent: 'off',
 		'react/jsx-indent': [2, 'tab'],
 		'react/jsx-indent-props': [2, 'tab'],
 		'no-tabs': 'off',
