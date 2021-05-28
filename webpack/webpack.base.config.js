@@ -19,7 +19,7 @@ module.exports = {
 	},
 	output: {
 		path: path.resolve('dist'),
-		publicPath: '/app/',
+		publicPath: '/',
 	},
 	devServer: {
 		headers: {

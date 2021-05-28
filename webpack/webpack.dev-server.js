@@ -11,9 +11,9 @@ const options = {
 	host,
 	quiet: false,
 	disableHostCheck: true,
-	publicPath: '/app/',
+	publicPath: '/',
 	historyApiFallback: {
-		rewrites: [{ from: '/', to: '/app/' }],
+		rewrites: [{ from: '/', to: '/' }],
 	},
 	watchOptions: {
 		ignored: /node_modules/,
