@@ -19,7 +19,7 @@ module.exports = {
 	},
 	output: {
 		path: path.resolve('dist'),
-		publicPath: '/app/',
+		publicPath: '/',
 	},
 	devServer: {
 		headers: {
@@ -40,7 +40,7 @@ module.exports = {
 				],
 			},
 			{
-				test: /\.(woff(2)?|ttf|eot|svg|gif)(\?v=\d+\.\d+\.\d+)?$/,
+				test: /\.(woff(2)?|ttf|eot|svg|gif|jpeg)(\?v=\d+\.\d+\.\d+)?$/,
 				use: [{
 					loader: 'file-loader',
 					options: {

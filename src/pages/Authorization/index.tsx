@@ -1,6 +1,5 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import Form from './containers/form';
 import styles from './styles.scss';
 
 interface IAuthPage {
@@ -13,9 +12,7 @@ const AuthPage = ({
 	if (isAuth === true) return <Redirect to="/chat" />;
 
 	return (
-		<div className={styles.container}>
-			<Form />
-		</div>
+		<div className={styles.container} />
 	);
 };
 
