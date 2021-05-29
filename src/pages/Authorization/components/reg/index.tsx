@@ -32,5 +32,5 @@ const Reg = () => (
 			</div>
 		</div>
 	</div>
-        );
+);
 export default Reg;
