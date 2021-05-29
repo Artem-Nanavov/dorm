@@ -25,6 +25,10 @@
 				display: flex;
 				justify-content: space-around;
 
+				.active {
+					background: #E2E5E6;
+				}
+
 				button {
 					text-transform: none;
 					height: 100%;
