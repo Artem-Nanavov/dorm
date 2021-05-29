@@ -1,0 +1,24 @@
+.logo {
+	width: 200px;
+	height: 50px;
+	background: #FFED00;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	span {
+		width: auto;
+		font-family: 'Mulish', sans-serif;
+		font-size: 24px;
+
+
+		&:nth-child(1) {
+			font-weight: 600;
+		}
+
+		&:nth-child(2) {
+			padding-left: 2px;
+			font-weight: 300;
+		}
+	}
+}
