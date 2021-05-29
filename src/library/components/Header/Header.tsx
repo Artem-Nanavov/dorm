@@ -42,7 +42,7 @@ const Header = () => {
 								Объявления
 							</Button>
 						</NavLink>
-						<NavLink exact activeClassName={styles.active} to="/">
+						<NavLink exact activeClassName={styles.active} to="/petetion">
 							<Button>
 								Петиции
 							</Button>
