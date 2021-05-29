@@ -32,17 +32,17 @@ const Header = () => {
 				</div>
 				<div className={styles.contentText}>
 					<div className={styles.container}>
-						<NavLink to="/">
+						<NavLink activeClassName={styles.active} to="/">
 							<Button>
 								Главная
 							</Button>
 						</NavLink>
-						<NavLink to="">
+						<NavLink activeClassName={styles.active} to="/ad">
 							<Button>
 								Объявления
 							</Button>
 						</NavLink>
-						<NavLink to="">
+						<NavLink activeClassName={styles.active} to="">
 							<Button>
 								Петиции
 							</Button>
