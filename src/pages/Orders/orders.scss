@@ -1,0 +1,54 @@
+.wrapper {
+	width: 80%;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+
+	.container {
+		padding: 10px 0;
+		display: flex;
+		align-items: center;
+
+		.empty {
+			flex: 1;
+		}
+
+		.textContainer {
+			flex: 1;
+			display: flex;
+			justify-content: center;
+
+			.active {
+				background: #F4F5F4;
+				border-radius: 5px;
+			}
+
+			a {
+				margin: 0 10px;
+
+				button {
+					padding: 10px 15px;
+					font-size: 13px;
+					font-weight: 600;
+					text-transform: none;
+					border: 1px solid #F4F5F4;
+				}
+			}
+		}
+
+		.addOrder {
+			flex: 1;
+			display: flex;
+			justify-content: flex-end;
+
+			button {
+				box-shadow: 0 0 10px #E5E5E5;
+				height: 35px;
+				width: 180px;
+				background: #FFED00;
+				text-transform: none;
+				font-weight: 300;
+			}
+		}
+	}
+}
