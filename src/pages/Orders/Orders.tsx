@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import {
-	NavLink, Route, Switch,
+	NavLink, Route, Switch, useHistory,
 } from 'react-router-dom';
-
 import {Button} from '@material-ui/core';
 import Find from 'library/components/Find/Find';
 import Change from 'library/components/Change/Change';
@@ -11,7 +10,12 @@ import ModalWarring from 'library/components/ModalWarring/ModalWarring';
 import styles from './orders.scss';
 
 const Orders = () => {
+	const history = useHistory();
 	const [open, setOpen] = useState(false);
+
+	React.useEffect(() => {
+		history.replace('/ad/find');
+	}, []);
 
 	const handleClickOpen = () => {
 		setOpen(true);

@@ -3,10 +3,6 @@ import {useUserStore} from 'main/RootStoreProvider';
 import {Redirect} from 'react-router-dom';
 import {observer} from 'mobx-react-lite';
 
-interface IWithAuth {
-	Component: React.FC;
-}
-
 const WithNotAuth = (WrappedComponent: any) => {
 	const Auth = observer(() => {
 		const userStore = useUserStore();
@@ -15,15 +11,15 @@ const WithNotAuth = (WrappedComponent: any) => {
 			userStore.getUserInfo();
 		}, []);
 
-		if (userStore.isAuth === true) {
+		if (userStore.isAuth === true && userStore.isLoadingAuth === false) {
 			return <Redirect to="/" />;
 		}
 
-		if (userStore.isAuth === false) {
+		if (userStore.isAuth === false && userStore.isLoadingAuth === false) {
 			return <Redirect to="/login" />;
 		}
 
-		return WrappedComponent;
+		return <WrappedComponent />;
 	});
 
 	const ConnectedWithNotAuth = Auth;

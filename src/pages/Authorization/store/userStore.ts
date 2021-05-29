@@ -36,6 +36,8 @@ class UserStore {
 
 	@observable isLoading: boolean = false;
 
+	@observable isLoadingAuth: boolean = true;
+
 	constructor() {
 		makeAutoObservable(this);
 	}
@@ -53,6 +55,7 @@ class UserStore {
 
 	@action setIsAuth(isAuth: boolean) {
 		this.isAuth = isAuth;
+		this.isLoadingAuth = false;
 	}
 
 	@action setIsLoading(isLoading: boolean) {

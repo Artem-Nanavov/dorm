@@ -32,7 +32,7 @@ const Header = () => {
 				</div>
 				<div className={styles.contentText}>
 					<div className={styles.container}>
-						<NavLink activeClassName={styles.active} to="/">
+						<NavLink exact activeClassName={styles.active} to="/">
 							<Button>
 								Главная
 							</Button>
@@ -42,7 +42,7 @@ const Header = () => {
 								Объявления
 							</Button>
 						</NavLink>
-						<NavLink activeClassName={styles.active} to="">
+						<NavLink exact activeClassName={styles.active} to="/">
 							<Button>
 								Петиции
 							</Button>
