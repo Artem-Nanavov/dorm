@@ -1,5 +1,7 @@
 import React from 'react';
-import img from 'images/background.jpeg';
+import { Button } from '@material-ui/core';
+import { NavLink } from 'react-router-dom';
+
 import styles from './reg.scss';
 
 const Reg = () => (
@@ -8,27 +10,26 @@ const Reg = () => (
 			<div className={styles.blockContainer}>
 				<h1>Регистрация</h1>
 				<div className={styles.container}>
-					<div className={styles.bord}>
-						<form className={styles.forms}>
-							<input type="text" placeholder="Имя" />
-
-							<input type="text" placeholder="Фамилия" />
-
-							<input type="text" placeholder="Email" />
-
+					<form className={styles.forms}>
+						<div className={styles.formBorder}>
+							<input type="text" placeholder="ФИО" />
+							<input type="email" placeholder="Email" />
 							<input type="text" placeholder="Город" />
-
 							<input type="text" placeholder="Выберите общежитие" />
-
 							<input type="text" placeholder="Номер команты (необязательно)" />
-						</form>
-						<button type="submit">Зарегистрироваться</button>
-					</div>
+							<input type="password" placeholder="Пароль" />
+						</div>
+						<Button type="submit">Зарегистрироваться</Button>
+					</form>
 				</div>
+				<NavLink className={styles.yet} to="/login">Уже зарегистрировались?</NavLink>
 			</div>
 		</div>
-		<div className={styles.imageContainer}>
-			<img src={img} alt="" />
+		<div className={styles.imgs}>
+			<div className={styles.imageContainer}>
+				<div className={styles.headText}>МЫЩага</div>
+				<div className={styles.subText}>Закрытое сообщество общежитий</div>
+			</div>
 		</div>
 	</div>
         );

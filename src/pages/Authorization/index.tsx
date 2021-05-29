@@ -8,7 +8,7 @@ interface IAuthPage {
 	isAuth: boolean;
 }
 
-const AuthPage = ({
+const Authorization = ({
 	isAuth,
 }: IAuthPage) => {
 	if (isAuth === true) return <Redirect to="/chat" />;
@@ -18,4 +18,4 @@ const AuthPage = ({
 	);
 };
 
-export default AuthPage;
+export default Authorization;
