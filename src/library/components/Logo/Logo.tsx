@@ -1,13 +1,11 @@
 import React from 'react';
-import styles from  './logo.scss';
+import styles from './logo.scss';
 
-const Logo = () => {
-    return(
-        <div className={styles.logo}>
-            <span>МЫЩ</span>
-            <span>АГА</span>
-        </div>
-    )
-}
+const Logo = () => (
+	<div className={styles.logo}>
+		<span>МЫЩ</span>
+		<span>АГА</span>
+	</div>
+);
 
 export default Logo;
