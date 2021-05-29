@@ -1,22 +1,64 @@
-.Pet{
+.wrapper{
+	margin: 0 auto;
+	width: 80%;
+
 	.main{
-		form{
-			button{
-				background-color: #FFED00;
-				margin-top: 50px;
-				width: 360px;
-				margin: 0 auto;
-				padding: 10px 0;
+		.getPet{
+			margin-top: 22px;
+			background-color: #FFED00;
+			width: 360px;
+			padding: 10px 0;
+			margin-left: 785px;
+			margin-bottom: 21px;
+		}
+
+		.petition{
+			padding: 30px;
+			display: flex;
+			width: 100%;
+			height: 125px;
+			background: #F4F5F4;
+			border-radius: 15px;
+			justify-content: space-between;
+			
+			.description{
+				.headPet{
+					font-size: 18px;
+					font-weight: 600;
+					font-family: 'Mulish', sans-serif;
+				}
+
+				.descriptionPet{
+					padding-top: 10px;
+					font-size: 16px;
+					font-weight: 300;
+					font-family: 'Mulish', sans-serif;
+				}
 			}
 
-			.petition{
-				width: 1145px;
-				height: 125px;
-				background: #F4F5F4;
+			.counter{
+				padding-bottom: 10px;
 
-				.headPet{
-					
+				.numberVoices{
+					text-align: center;
+					margin-bottom: 5px;
+					font-weight: 400;
+					font-size: 28px;
+					color: #469B40;
 				}
+
+				.add{
+					padding: 6px;
+					margin-right: 2px;
+					background: #469B40;
+				}
+	
+				.remove{
+					padding: 6px;
+					margin-right: 3px;
+					background: #C67373;
+				}
+				
 			}
 		}
 	}
