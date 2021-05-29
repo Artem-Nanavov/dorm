@@ -22,10 +22,10 @@ export const useRootStore = () => {
 	return context;
 };
 
-// export const useUserStore = () => {
-// 	const { userStore } = useRootStore();
-// 	return userStore;
-// };
+export const useUserStore = () => {
+	const { userStore } = useRootStore();
+	return userStore;
+};
 
 export const RootStoreProvider = ({
 	children,

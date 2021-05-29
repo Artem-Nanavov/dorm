@@ -1,11 +1,10 @@
-// import PostStore from '../../pages/vk/stores/vkStore';
+import UserStore from 'pages/Authorization/store/userStore';
 
 class RootStore {
-	// vkStore: PostStore;
+	userStore: UserStore;
 
 	constructor() {
-		// this.vkStore = new PostStore();
-		console.log('');
+		this.userStore = new UserStore();
 	}
 }
 
