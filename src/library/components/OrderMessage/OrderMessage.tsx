@@ -1,15 +1,15 @@
 import React from 'react';
 import {Button} from '@material-ui/core';
+import {IDataMessageMock} from '__mocks__/dataMessageMock';
 import styles from './style.scss';
 
 interface Props {
-	data: any;
+	data: IDataMessageMock[];
 }
 
 const OrderMessage = ({data}: Props) => {
-	const messages = data.map((item: any, index: any) => (
-		// eslint-disable-next-line react/no-array-index-key
-		<div key={index} className={styles.container}>
+	const messages = data.map((item) => (
+		<div key={Date.now()} className={styles.container}>
 			<div className={styles.imageContainer}>
 				<img src={item.img} alt="картинка" />
 			</div>
