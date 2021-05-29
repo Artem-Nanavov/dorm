@@ -4,10 +4,9 @@ import {
 } from 'react-router-dom';
 
 import {Button} from '@material-ui/core';
-import Find from '../../library/components/Find/Find';
-import Change from '../../library/components/Change/Change';
-import Search from '../../library/components/Search/Search';
-
+import Find from 'library/components/Find/Find';
+import Change from 'library/components/Change/Change';
+import Search from 'library/components/Search/Search';
 import styles from './orders.scss';
 
 const Orders = () => (
