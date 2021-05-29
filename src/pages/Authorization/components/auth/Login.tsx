@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './login.scss';
 
-const Login = () => (
+const Reg = () => (
 	<div className={styles.log}>
 		<div className={styles.block}>
 			<div className={styles.blockContainer}>
@@ -9,6 +9,7 @@ const Login = () => (
 				<div className={styles.container}>
 					<div className={styles.bord}>
 						<form className={styles.forms}>
+
 							<input type="text" placeholder="Email" />
 
 							<input type="text" placeholder="Пароль" />
@@ -17,10 +18,8 @@ const Login = () => (
 				</div>
 
 				<div className={styles.label}>
-					<div className={styles.checkbox}>
-						<input type="checkbox" />
-						<div className={styles.text}>Запомнить меня </div>
-					</div>
+					<input type="checkbox" />
+					<div className={styles.text}>Запомнить меня </div>
 
 					<div className={styles.forgetPassword}>Забыли пароль?</div>
 				</div>
@@ -35,6 +34,5 @@ const Login = () => (
 			</div>
 		</div>
 	</div>
-);
-
-export default Login;
+        );
+export default Reg;
