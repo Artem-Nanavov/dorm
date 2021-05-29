@@ -42,7 +42,7 @@ const Header = () => {
 								Объявления
 							</Button>
 						</NavLink>
-						<NavLink to="">
+						<NavLink to="/petetion">
 							<Button>
 								Петиции
 							</Button>
