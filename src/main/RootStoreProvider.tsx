@@ -27,6 +27,11 @@ export const useUserStore = () => {
 	return userStore;
 };
 
+export const useOrderStore = () => {
+	const { orderStore } = useRootStore();
+	return orderStore;
+};
+
 export const RootStoreProvider = ({
 	children,
 }: {

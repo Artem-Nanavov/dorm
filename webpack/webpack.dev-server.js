@@ -25,9 +25,9 @@ const options = {
 			changeOrigin: true,
 			secure: false,
 		},
-		'/user': {
-			target: `${env.server_api}user/`,
-			pathRewrite: { '^/user': '' },
+		'/fleamarket': {
+			target: `${env.server_api}fleamarket/`,
+			pathRewrite: { '^/fleamarket': '' },
 			changeOrigin: true,
 			secure: false,
 		},
