@@ -11,10 +11,6 @@ import styles from './header.scss'
 
 import Logo from '../Logo/Logo'
 
-import user from '../../../images/user.jpeg'
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-
 const Header = () => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
