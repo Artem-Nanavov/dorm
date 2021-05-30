@@ -2,6 +2,7 @@ import React from 'react';
 import Menu, { MenuProps } from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles } from '@material-ui/core';
+import { NavLink } from 'react-router-dom';
 
 interface StandardComponentProps {
     anchorEl: any,
@@ -45,11 +46,13 @@ const MenuAuth = ({anchorEl, handleClose} : StandardComponentProps) => (
 		open={Boolean(anchorEl)}
 		onClose={handleClose}
 	>
-		<StyledMenuItem
-			onClick={handleClose}
-		>
-			Профиль
-		</StyledMenuItem>
+		<NavLink to="/profile">
+			<StyledMenuItem
+				onClick={handleClose}
+			>
+				Профиль
+			</StyledMenuItem>
+		</NavLink>
 		<StyledMenuItem
 			onClick={handleClose}
 		>
