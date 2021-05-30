@@ -37,6 +37,18 @@ const options = {
 			changeOrigin: true,
 			secure: false,
 		},
+		'/user': {
+			target: `${env.server_api}user/`,
+			pathRewrite: { '^/user': '' },
+			changeOrigin: true,
+			secure: false,
+		},
+		'/phrase': {
+			target: 'http://fucking-great-advice.ru/api/random',
+			pathRewrite: { '^/phrase': '' },
+			changeOrigin: true,
+			secure: false,
+		},
 	},
 };
 

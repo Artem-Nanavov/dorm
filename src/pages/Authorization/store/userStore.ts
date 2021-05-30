@@ -11,26 +11,18 @@ configure({
 });
 
 interface IUser {
-	userId: string;
+	image: string;
+	id: string;
 	email: string;
-	firstName: string;
-	lastName: string;
+	first_name: string;
+	last_name: string;
 	dormId: string;
 	room_number: string;
+	invitationId: string;
 }
 
 class UserStore {
-	@observable userId: null | string = null;
-
-	@observable email: null | string = null;
-
-	@observable firstName: null | string = null;
-
-	@observable lastName: null | string = null;
-
-	@observable dormId: null | string = null;
-
-	@observable room_number: null | string = null;
+	@observable user: null | IUser = null;
 
 	@observable isAuth: boolean = false;
 
@@ -38,17 +30,14 @@ class UserStore {
 
 	@observable isLoadingAuth: boolean = true;
 
+	@observable phrase: any = '';
+
 	constructor() {
 		makeAutoObservable(this);
 	}
 
 	@action setUserData(user: IUser) {
-		this.userId = user.userId;
-		this.email = user.email;
-		this.firstName = user.firstName;
-		this.lastName = user.lastName;
-		this.dormId = user.dormId;
-		this.room_number = user.room_number;
+		this.user = user;
 
 		this.setIsAuth(true);
 	}
@@ -108,6 +97,58 @@ class UserStore {
 			console.log('data', res.data);
 		} catch (e) {
 			console.log('reg user error: ', e.message);
+		} finally {
+			this.isLoading = false;
+		}
+	}
+
+	@action async logout() {
+		try {
+			this.isLoading = true;
+
+			await createAxiosShit().post('/auth/logout');
+		} catch (e) {
+			console.log('logou user error: ', e.message);
+		} finally {
+			this.isLoading = false;
+		}
+	}
+
+	@action async getPhrase() {
+		try {
+			this.isLoading = true;
+
+			const res = await createAxiosShit().get('/phrase');
+
+			this.phrase = res.data;
+		} catch (e) {
+			console.log('logou user error: ', e.message);
+		} finally {
+			this.isLoading = false;
+		}
+	}
+
+	@action async updateUserInfo(fields: {[key: string]: any}[]) {
+		try {
+			this.isLoading = true;
+
+			const data = new FormData();
+
+			fields.forEach((field) => {
+				data.append(field.key, field.value);
+
+				if (field.key === 'image') {
+					console.log(field);
+					data.append('image', field.value[0], field.value[0].name);
+				}
+			});
+
+			const res = await createAxiosShit().put('/user/edit', data);
+
+			this.phrase = res.data;
+			console.log('res', res.data);
+		} catch (e) {
+			console.log('logou user error: ', e.message);
 		} finally {
 			this.isLoading = false;
 		}

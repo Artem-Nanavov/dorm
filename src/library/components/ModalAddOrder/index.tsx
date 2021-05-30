@@ -5,6 +5,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
+import {useHistory} from 'react-router-dom';
 import {useDropzone} from 'react-dropzone';
 import {
 	withStyles, makeStyles, createStyles,
@@ -14,6 +15,7 @@ import {
 	InputLabel, Select, MenuItem,
 } from '@material-ui/core';
 import styles from './styles.scss';
+import { observer } from 'mobx-react-lite';
 
 interface Props {
 	handleClose: any,
@@ -93,13 +95,14 @@ const img: React.CSSProperties = {
 	height: '100%',
 };
 
-const ModalAddOrder = ({handleClose, open}: Props) => {
+const ModalAddOrder = observer(({handleClose, open}: Props) => {
 	const orderStore = useOrderStore();
 	const stylesMUI = useStyles();
+	const history = useHistory();
 
 	const [desc, setDesc] = React.useState('');
 	const [title, setTitle] = React.useState('');
-	const [type, setType] = React.useState<'Нашел' | 'Обмен' | 'Ищу'>('Нашел');
+	const [type, setType] = React.useState<'search' | 'change' | 'find'>('find');
 	const [files, setFiles] = React.useState([]);
 
 	const {getRootProps, getInputProps} = useDropzone({
@@ -115,8 +118,14 @@ const ModalAddOrder = ({handleClose, open}: Props) => {
 	});
 
 	const handleChange = (e:React.ChangeEvent<{name?: string | undefined; value: unknown;}>) => {
-		setType(e.target.value as 'Нашел' | 'Обмен' | 'Ищу');
+		setType(e.target.value as 'search' | 'change' | 'find');
 	};
+
+	React.useEffect(() => {
+		if (orderStore.isLoadingSend) {
+			window.location.reload();
+		}
+	}, [orderStore.isLoadingSend]);
 
 	React.useEffect(() => () => {
 		// Make sure to revoke the data uris to avoid memory leaks
@@ -177,9 +186,9 @@ const ModalAddOrder = ({handleClose, open}: Props) => {
 						defaultValue={type}
 						id="outlined-age-native-simple"
 					>
-						<MenuItem value="Нашел">Нашел</MenuItem>
-						<MenuItem value="Обмен">Обмен</MenuItem>
-						<MenuItem value="Ищу">Ищу</MenuItem>
+						<MenuItem value="find">find</MenuItem>
+						<MenuItem value="change">change</MenuItem>
+						<MenuItem value="search">search</MenuItem>
 					</Select>
 				</DialogContent>
 
@@ -203,6 +212,6 @@ const ModalAddOrder = ({handleClose, open}: Props) => {
 			</div>
 		</Dialog>
 	);
-};
+});
 
 export default ModalAddOrder;

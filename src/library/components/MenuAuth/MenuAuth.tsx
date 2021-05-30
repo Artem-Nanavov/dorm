@@ -2,6 +2,7 @@ import React from 'react';
 import Menu, { MenuProps } from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles } from '@material-ui/core';
+import {useUserStore} from 'main/RootStoreProvider';
 import { NavLink } from 'react-router-dom';
 
 interface StandardComponentProps {
@@ -39,26 +40,35 @@ const StyledMenuItem = withStyles(() => ({
 	},
 }))(MenuItem);
 
-const MenuAuth = ({anchorEl, handleClose} : StandardComponentProps) => (
-	<StyledMenu
-		anchorEl={anchorEl}
-		keepMounted
-		open={Boolean(anchorEl)}
-		onClose={handleClose}
-	>
-		<NavLink to="/profile">
-			<StyledMenuItem
-				onClick={handleClose}
-			>
-				Профиль
-			</StyledMenuItem>
-		</NavLink>
-		<StyledMenuItem
-			onClick={handleClose}
+const MenuAuth = ({anchorEl, handleClose} : StandardComponentProps) => {
+	const userStore = useUserStore();
+
+	const logout = () => {
+		handleClose();
+		userStore.logout();
+	};
+
+	return (
+		<StyledMenu
+			anchorEl={anchorEl}
+			keepMounted
+			open={Boolean(anchorEl)}
+			onClose={handleClose}
 		>
-			Выход
-		</StyledMenuItem>
-	</StyledMenu>
-);
+			<NavLink to="/profile">
+				<StyledMenuItem
+					onClick={handleClose}
+				>
+					Профиль
+				</StyledMenuItem>
+			</NavLink>
+			<StyledMenuItem
+				onClick={logout}
+			>
+				Выход
+			</StyledMenuItem>
+		</StyledMenu>
+	);
+};
 
 export default MenuAuth;

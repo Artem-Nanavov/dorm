@@ -26,7 +26,9 @@ class UserStore {
 
 	@observable searchItems: IOrderItem[] = [];
 
-	@observable isLoading: boolean = true;
+	@observable isLoading: boolean = false;
+
+	@observable isLoadingSend: boolean = false;
 
 	constructor() {
 		makeAutoObservable(this);
@@ -87,6 +89,8 @@ class UserStore {
 			data.append('image', imgs[0], imgs[0].name);
 
 			await createOrderItem(data);
+
+			this.isLoadingSend = true;
 		} catch (e) {
 			console.log('get user info error: ', e.message);
 		} finally {

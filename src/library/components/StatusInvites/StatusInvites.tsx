@@ -10,7 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
 import { useSnackbar } from 'notistack';
-// import { useRootStore } from 'main/RootStoreProvider';
+import { useUserStore } from 'main/RootStoreProvider';
 
 interface Props {
 	array: any
@@ -48,17 +48,18 @@ const StatusInvites = ({array}: Props) => {
 	const classes = useStyles();
 	const { enqueueSnackbar } = useSnackbar();
 	const [click, setClick] = React.useState(0);
-	// const rootStore = useRootStore();
+	const userStore = useUserStore();
 
 	const handleClick = () => {
 		setClick(click + 1);
 	};
 
 	React.useEffect(() => {
-		if (click % 5 === 0) {
-			enqueueSnackbar('ты думаешь, что меня трахнешь', {variant: 'info'});
+		if (click % 5 === 0 && click !== 0) {
+			userStore.getPhrase();
+			enqueueSnackbar(userStore.phrase.text as any, {variant: 'info'});
 		}
-	}, [click]);
+	}, [click, userStore.phrase]);
 
 	const options = {
 		year: 'numeric',
@@ -78,7 +79,7 @@ const StatusInvites = ({array}: Props) => {
 				</TableHead>
 				<TableBody>
 					{array.map((row: any) => (
-						<TableRow key={row.id}>
+						<TableRow key={Math.random()}>
 							<TableCell component="th" scope="row">
 								{row.email}
 							</TableCell>

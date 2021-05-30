@@ -7,7 +7,7 @@ import styles from './style.scss';
 import { useHistory } from 'react-router-dom';
 
 interface Props {
-	type: IOrderType;
+	type: any;
 }
 
 const OrderMessage = observer(({
