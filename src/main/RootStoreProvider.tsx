@@ -15,6 +15,7 @@ export const initializeStore = (): RootStore => {
 
 export const useRootStore = () => {
 	const context = useContext(StoreContext);
+
 	if (context === undefined) {
 		throw new Error('useRootStore must be used within RootStoreProvider');
 	}
@@ -25,6 +26,11 @@ export const useRootStore = () => {
 export const useUserStore = () => {
 	const { userStore } = useRootStore();
 	return userStore;
+};
+
+export const useOrderStore = () => {
+	const { orderStore } = useRootStore();
+	return orderStore;
 };
 
 export const RootStoreProvider = ({

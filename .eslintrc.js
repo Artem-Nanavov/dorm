@@ -33,6 +33,7 @@ module.exports = {
 		'@typescript-eslint',
 	],
 	rules: {
+		'react/require-default-props': 'off',
 		'eslintjsx-a11y/alt-text': 'off',
 		'react/prop-types': 'off',
 		camelcase: 'off',

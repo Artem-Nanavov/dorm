@@ -1,22 +1,32 @@
 import React from 'react';
+import { observer } from 'mobx-react-lite';
 import {Button} from '@material-ui/core';
-import {IDataMessageMock} from '__mocks__/dataMessageMock';
+import { IOrderType } from 'pages/Orders/store/ordersStore';
+import {useOrderStore} from 'main/RootStoreProvider';
 import styles from './style.scss';
 
 interface Props {
-	data: IDataMessageMock[];
+	type: IOrderType;
 }
 
-const OrderMessage = ({data}: Props) => {
-	const messages = data.map((item) => (
-		<div key={Date.now()} className={styles.container}>
+const OrderMessage = observer(({
+	type,
+}: Props) => {
+	const orderStore = useOrderStore();
+
+	React.useEffect(() => {
+		orderStore.getItems(type);
+	}, []);
+
+	const messages = orderStore.getLocalItems(type).map((item) => (
+		<div key={item.id} className={styles.container}>
 			<div className={styles.imageContainer}>
-				<img src={item.img} alt="картинка" />
+				<img src={`${process.env.SERVER_API}${item.image}`} alt="картинка" />
 			</div>
 			<div className={styles.description}>
 				<div className={styles.descriptionContainer}>
 					<h3>{item.title}</h3>
-					<p>{item.message}</p>
+					<p>{item.text}</p>
 				</div>
 			</div>
 			<div className={styles.moreInformation}>
@@ -32,6 +42,6 @@ const OrderMessage = ({data}: Props) => {
 			{messages}
 		</div>
 	);
-};
+});
 
 export default OrderMessage;

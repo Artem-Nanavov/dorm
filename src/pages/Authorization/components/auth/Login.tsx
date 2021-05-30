@@ -3,10 +3,13 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import {useUserStore} from 'main/RootStoreProvider';
+import { Redirect } from 'react-router-dom';
 import styles from './login.scss';
 
 const Login = () => {
 	const userStore = useUserStore();
+
+	if (userStore.isAuth === true) return <Redirect to="/ad" />;
 
 	const [email, setEmail] = React.useState('');
 	const [password, setPassword] = React.useState('');

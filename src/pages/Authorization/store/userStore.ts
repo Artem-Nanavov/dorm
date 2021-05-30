@@ -68,6 +68,8 @@ class UserStore {
 			this.setUserData(res.data);
 		} catch (e) {
 			console.log('get user info error: ', e.message);
+		} finally {
+			this.isLoadingAuth = false;
 		}
 	}
 
@@ -78,6 +80,8 @@ class UserStore {
 			console.log('data', res.data);
 		} catch (e) {
 			console.log('login user error: ', e.message);
+		} finally {
+			this.isLoading = false;
 		}
 	}
 
@@ -102,6 +106,8 @@ class UserStore {
 			console.log('data', res.data);
 		} catch (e) {
 			console.log('reg user error: ', e.message);
+		} finally {
+			this.isLoading = false;
 		}
 	}
 }

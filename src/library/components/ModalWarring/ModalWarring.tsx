@@ -8,6 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import {
 	withStyles, makeStyles, createStyles,
 } from '@material-ui/core/styles';
+import {useRootStore} from 'main/RootStoreProvider';
 
 interface Props {
 	handleClose: any,
@@ -57,6 +58,14 @@ const CustomDialogActions = withStyles(() => ({
 }))(DialogActions);
 
 const ModalWarring = ({handleClose, open}: Props) => {
+	const rootStore = useRootStore();
+	const [warningText, setWarningText] = React.useState('');
+
+	const sendWarning = React.useCallback(() => {
+		rootStore.socket.emit('warning', {message: warningText});
+		handleClose();
+	}, [warningText]);
+
 	const styles = useStyles();
 	return (
 		<Dialog
@@ -69,14 +78,16 @@ const ModalWarring = ({handleClose, open}: Props) => {
 				<DialogTitle>Сообщение о тревоге</DialogTitle>
 				<DialogContent>
 					<CustomTextField
+						value={warningText}
+						onChange={(e) => setWarningText(e.target.value)}
 						label="Введите сообщение"
 						multiline
-						rows={12}
+						inputProps={{ maxLength: 120 }}
 						variant="outlined"
 					/>
 				</DialogContent>
 				<CustomDialogActions>
-					<CustomButton onClick={handleClose} color="primary">
+					<CustomButton onClick={sendWarning} color="primary">
 						Отправить
 					</CustomButton>
 				</CustomDialogActions>
