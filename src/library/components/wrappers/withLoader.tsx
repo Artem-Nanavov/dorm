@@ -16,7 +16,9 @@ const withLoader = (WrappedComponent: React.FunctionComponent) => {
 		const userStore = useUserStore();
 
 		React.useEffect(() => {
-			userStore.getUserInfo();
+			if (userStore.isLoadingAuth === true) {
+				userStore.getUserInfo();
+			}
 		}, []);
 
 		return (
