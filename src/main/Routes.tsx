@@ -2,6 +2,7 @@ import React from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom';
 import Reg from 'pages/Authorization';
 import Authorization from 'pages/Authorization/components/auth/Login';
+import PageDev from 'library/components/PageDev/PageDev';
 import WithAuth from 'library/components/wrappers/withAuth';
 import withLoader from 'library/components/wrappers/withLoader';
 import WithHeader from 'library/components/wrappers/withHeader';
@@ -21,6 +22,7 @@ const WithLoaderReg = withLoader(Reg);
 const WithLoaderAuth = withLoader(Authorization);
 const WithLoaderOrders = withLoader(WithHeaderOrders);
 const WithLoaderPetition = withLoader(WithHeaderPetition);
+const WithLoaderPageDev = withLoader(PageDev);
 const WithLoader404 = withLoader(Page404);
 
 const Routes = () => {
@@ -43,6 +45,7 @@ const Routes = () => {
 				<Route exact path="/reg" component={WithLoaderReg} />
 				<Route path="/ad" component={WithLoaderOrders} />
 				<Route exact path="/petition" component={WithLoaderPetition} />
+				<Route exact path="/pagedev" component={WithLoaderPageDev} />
 				<Route exact path="/*" component={WithLoader404} />
 			</Switch>
 		</>
