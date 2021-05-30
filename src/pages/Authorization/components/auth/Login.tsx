@@ -4,9 +4,10 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import {useUserStore} from 'main/RootStoreProvider';
 import { Redirect } from 'react-router-dom';
+import { observer } from 'mobx-react-lite';
 import styles from './login.scss';
 
-const Login = () => {
+const Login = observer(() => {
 	const userStore = useUserStore();
 
 	if (userStore.isAuth === true) return <Redirect to="/ad" />;
@@ -73,6 +74,6 @@ const Login = () => {
 			</div>
 		</div>
 	);
-};
+});
 
 export default Login;

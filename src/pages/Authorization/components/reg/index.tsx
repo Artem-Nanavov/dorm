@@ -1,12 +1,14 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import {useUserStore} from 'main/RootStoreProvider';
-
+import { observer } from 'mobx-react-lite';
 import styles from './reg.scss';
 
-const Reg = () => {
+const Reg = observer(() => {
 	const userStore = useUserStore();
+
+	if (userStore.isAuth === true) return <Redirect to="/ad" />;
 
 	const [firstName, setFirstName] = React.useState('');
 	const [lastName, setLastName] = React.useState('');
@@ -85,6 +87,6 @@ const Reg = () => {
 			</div>
 		</div>
 	);
-};
+});
 
 export default Reg;

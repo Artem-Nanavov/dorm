@@ -77,6 +77,7 @@ class UserStore {
 		try {
 			const res = await createAxiosShit().post('/auth/login', {email, password});
 			this.setUserData(res.data);
+			this.isAuth = true;
 			console.log('data', res.data);
 		} catch (e) {
 			console.log('login user error: ', e.message);
@@ -103,6 +104,7 @@ class UserStore {
 				roomNumber,
 			});
 			this.setUserData(res.data);
+			this.isAuth = true;
 			console.log('data', res.data);
 		} catch (e) {
 			console.log('reg user error: ', e.message);
