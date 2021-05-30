@@ -31,6 +31,12 @@ const options = {
 			changeOrigin: true,
 			secure: false,
 		},
+		'/petitions': {
+			target: `${env.server_api}petitions/`,
+			pathRewrite: { '^/petitions': '' },
+			changeOrigin: true,
+			secure: false,
+		},
 	},
 };
 

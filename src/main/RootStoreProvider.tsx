@@ -33,6 +33,11 @@ export const useOrderStore = () => {
 	return orderStore;
 };
 
+export const usePetitionStore = () => {
+	const { petitionStore } = useRootStore();
+	return petitionStore;
+};
+
 export const RootStoreProvider = ({
 	children,
 }: {

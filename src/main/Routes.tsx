@@ -14,11 +14,12 @@ const WithAuthOrders = WithAuth(Orders);
 const WithAuthPetition = WithAuth(Petition);
 
 const WithHeaderOrders = WithHeader(WithAuthOrders);
+const WithHeaderPetition = WithHeader(WithAuthPetition);
 
 const WithLoaderReg = withLoader(Reg);
 const WithLoaderAuth = withLoader(Authorization);
 const WithLoaderOrders = withLoader(WithHeaderOrders);
-const WithLoaderPetition = withLoader(WithAuthPetition);
+const WithLoaderPetition = withLoader(WithHeaderPetition);
 
 const Routes = () => {
 	const { enqueueSnackbar } = useSnackbar();
