@@ -21,6 +21,7 @@ const WithLoaderReg = withLoader(Reg);
 const WithLoaderAuth = withLoader(Authorization);
 const WithLoaderOrders = withLoader(WithHeaderOrders);
 const WithLoaderPetition = withLoader(WithHeaderPetition);
+const WithLoaderPageDev = withLoader(PageDev);
 
 const Routes = () => {
 	const { enqueueSnackbar } = useSnackbar();
@@ -42,7 +43,7 @@ const Routes = () => {
 				<Route exact path="/reg" component={WithLoaderReg} />
 				<Route path="/ad" component={WithLoaderOrders} />
 				<Route exact path="/petition" component={WithLoaderPetition} />
-				<Route exact path="/pagedev" component={PageDev} />
+				<Route exact path="/pagedev" component={WithLoaderPageDev} />
 			</Switch>
 		</>
 	);
