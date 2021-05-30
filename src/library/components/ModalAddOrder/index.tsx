@@ -105,8 +105,8 @@ const ModalAddOrder = ({handleClose, open}: Props) => {
 	const {getRootProps, getInputProps} = useDropzone({
 		multiple: false,
 		accept: 'image/*',
-		onDrop: (acceptedFiles) => {
-			const arr = acceptedFiles.map((file) => Object.assign(file, {
+		onDrop: (acceptedFiles: any) => {
+			const arr = acceptedFiles.map((file: any) => Object.assign(file, {
 				preview: URL.createObjectURL(file),
 			}));
 

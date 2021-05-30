@@ -4,6 +4,7 @@ import {Button} from '@material-ui/core';
 import { IOrderType } from 'pages/Orders/store/ordersStore';
 import {useOrderStore} from 'main/RootStoreProvider';
 import styles from './style.scss';
+import { useHistory } from 'react-router-dom';
 
 interface Props {
 	type: IOrderType;
@@ -12,6 +13,7 @@ interface Props {
 const OrderMessage = observer(({
 	type,
 }: Props) => {
+	const history = useHistory();
 	const orderStore = useOrderStore();
 
 	React.useEffect(() => {
@@ -30,7 +32,7 @@ const OrderMessage = observer(({
 				</div>
 			</div>
 			<div className={styles.moreInformation}>
-				<Button>
+				<Button onClick={() => history.push('/pagedev')}>
 					Подробнее
 				</Button>
 			</div>

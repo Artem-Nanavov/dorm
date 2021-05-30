@@ -47,7 +47,7 @@ const Login = observer(() => {
 								<input
 									value={password}
 									onChange={(e) => setPassword(e.target.value)}
-									type="text"
+									type="password"
 									placeholder="Пароль"
 								/>
 							</div>

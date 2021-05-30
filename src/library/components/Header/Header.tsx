@@ -22,6 +22,9 @@ const CustomButton = withStyles(() => ({
 		color: '#F4F5F4',
 		fontSize: '12px',
 		fontWeight: 300,
+		'&:hover': {
+			background: '#C67373',
+		},
 	},
 }))(Button);
 
@@ -69,12 +72,12 @@ const Header = () => {
 						<PersonIcon />
 					</IconButton>
 					<MenuAuth anchorEl={anchorEl} handleClose={handleClose} />
-					<CustomButton onClick={() => setIsOpenWarningModal(true)} color="primary">
-						ТРЕВОГА !!!
-					</CustomButton>
 					<IconButton>
 						<NotificationsNoneIcon />
 					</IconButton>
+					<CustomButton onClick={() => setIsOpenWarningModal(true)} color="primary">
+						ТРЕВОГА !!!
+					</CustomButton>
 				</div>
 			</div>
 
