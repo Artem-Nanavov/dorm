@@ -9,18 +9,6 @@ const {rootPath} = require('../config/paths');
 
 const baseConfig = require('./webpack.base.config.js');
 
-const requiredVariables = [
-	'PORT',
-];
-
-const createGlobalsObject = () => {
-	const obj = {};
-
-	requiredVariables.forEach((variable) => {
-		obj[`process.env.${requiredVariables[variable]}`] = JSON.stringify(process.env[requiredVariables[variable]]);
-	});
-};
-
 module.exports = {
 	...baseConfig,
 	mode: 'production',
@@ -103,22 +91,8 @@ module.exports = {
 			chunkFilename: '[id].[hash].css',
 		}),
 		new webpack.DefinePlugin({
-			...createGlobalsObject(),
 			'process.env.PROD': 'true',
 		}),
-		() => {
-			const failedVars = [];
-
-			requiredVariables.forEach((variable) => {
-				if (!process.env[variable]) {
-					failedVars.push(variable);
-				}
-			});
-
-			if (failedVars.length) {
-				throw Error(`Variables were not provided: ${failedVars.join(', ')}`);
-			}
-		},
 		new CleanWebpackPlugin(['dist'], {
 			root: rootPath,
 			verbose: true,
