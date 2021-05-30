@@ -2,6 +2,7 @@ import React from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom';
 import Reg from 'pages/Authorization';
 import Authorization from 'pages/Authorization/components/auth/Login';
+import PageDev from 'library/components/PageDev/PageDev';
 import WithAuth from 'library/components/wrappers/withAuth';
 import withLoader from 'library/components/wrappers/withLoader';
 import WithHeader from 'library/components/wrappers/withHeader';
@@ -41,6 +42,7 @@ const Routes = () => {
 				<Route exact path="/reg" component={WithLoaderReg} />
 				<Route path="/ad" component={WithLoaderOrders} />
 				<Route exact path="/petition" component={WithLoaderPetition} />
+				<Route exact path="/pagedev" component={PageDev} />
 			</Switch>
 		</>
 	);
