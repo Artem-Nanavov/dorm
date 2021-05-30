@@ -1,4 +1,7 @@
 import React from 'react';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Button from '@material-ui/core/Button';
 import {useUserStore} from 'main/RootStoreProvider';
 import styles from './login.scss';
 
@@ -7,19 +10,24 @@ const Login = () => {
 
 	const [email, setEmail] = React.useState('');
 	const [password, setPassword] = React.useState('');
+	const [state, setState] = React.useState(false);
 
 	const login = React.useCallback(() => {
 		userStore.login(email, password);
 	}, [email, password]);
 
+	const handleChange = () => {
+		setState(!state);
+	};
+
 	return (
 		<div className={styles.log}>
 			<div className={styles.block}>
 				<div className={styles.blockContainer}>
-					<h1>Авторизация</h1>
 					<div className={styles.container}>
-						<div className={styles.bord}>
-							<form className={styles.forms}>
+						<h1>Авторизация</h1>
+						<form>
+							<div className={styles.formContainer}>
 								<input
 									value={email}
 									onChange={(e) => setEmail(e.target.value)}
@@ -33,23 +41,28 @@ const Login = () => {
 									type="text"
 									placeholder="Пароль"
 								/>
-							</form>
-						</div>
+							</div>
+							<div className={styles.label}>
+								<FormControlLabel
+									control={(
+										<Checkbox
+											checked={state}
+											onChange={handleChange}
+											name="checkedB"
+											color="primary"
+										/>
+									)}
+									label="Запомнить меня"
+								/>
+								<div className={styles.forgetPassword}>Забыли пароль?</div>
+							</div>
+						</form>
 					</div>
-
-					<div className={styles.label}>
-						<div className={styles.checkbox}>
-							<input type="checkbox" />
-							<div className={styles.text}>Запомнить меня </div>
-						</div>
-
-						<div className={styles.forgetPassword}>Забыли пароль?</div>
-					</div>
-					<button onClick={login} type="submit">Войти</button>
-					<div className={styles.yet}>Авторизация доступна только по специальным приглашениям</div>
+					<Button onClick={login} type="submit">Войти</Button>
 				</div>
+				<div className={styles.yet}>Авторизация доступна только по специальным приглашениям</div>
 			</div>
-			<div className="imgs">
+			<div className={styles.imgs}>
 				<div className={styles.imageContainer}>
 					<div className={styles.headText}>МЫЩага</div>
 					<div className={styles.subText}>Закрытое сообщество общежитий</div>

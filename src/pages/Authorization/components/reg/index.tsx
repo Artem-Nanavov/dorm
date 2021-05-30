@@ -30,9 +30,9 @@ const Reg = () => {
 		<div className={styles.reg}>
 			<div className={styles.block}>
 				<div className={styles.blockContainer}>
-					<h1>Регистрация</h1>
 					<div className={styles.container}>
-						<form className={styles.forms}>
+						<h1>Регистрация</h1>
+						<form>
 							<div className={styles.formBorder}>
 								<input
 									value={firstName}
@@ -73,8 +73,8 @@ const Reg = () => {
 							</div>
 							<Button onClick={regHandler} type="button">Зарегистрироваться</Button>
 						</form>
+						<NavLink className={styles.yet} to="/login">Уже зарегистрировались?</NavLink>
 					</div>
-					<NavLink className={styles.yet} to="/login">Уже зарегистрировались?</NavLink>
 				</div>
 			</div>
 			<div className={styles.imgs}>
