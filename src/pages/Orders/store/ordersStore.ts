@@ -4,7 +4,7 @@ import {
 	makeAutoObservable,
 	configure,
 } from 'mobx';
-import {getFindOrderItems} from '../api';
+import {getFindOrderItems, createOrderItem} from '../api';
 
 configure({
 	useProxies: 'never',
@@ -50,12 +50,15 @@ class UserStore {
 
 	@action async getItems(type: IOrderType) {
 		try {
+			this.isLoading = true;
+
 			const res = await getFindOrderItems(type);
 
-			this.isLoading = false;
 			this.setItem(type, res.data);
 		} catch (e) {
 			console.log('get user info error: ', e.message);
+		} finally {
+			this.isLoading = false;
 		}
 	}
 
@@ -69,6 +72,25 @@ class UserStore {
 			return this.searchItems;
 		default:
 			return this.findItems;
+		}
+	}
+
+	@action async createItem(title: string, desk: string, type: string, imgs: any) {
+		try {
+			this.isLoading = true;
+
+			const data = new FormData();
+
+			data.append('title', title);
+			data.append('text', desk);
+			data.append('type', type);
+			data.append('image', imgs[0], imgs[0].name);
+
+			await createOrderItem(data);
+		} catch (e) {
+			console.log('get user info error: ', e.message);
+		} finally {
+			this.isLoading = false;
 		}
 	}
 }

@@ -3,4 +3,4 @@ import {IOrderType} from './store/ordersStore';
 
 export const getFindOrderItems = (type: IOrderType) => createAxiosShit().get(`/fleamarket?type=${type}`);
 
-export const createOrderItem = () => {};
+export const createOrderItem = (data: any) => createAxiosShit().post('/fleamarket/create', data);

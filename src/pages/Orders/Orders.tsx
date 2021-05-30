@@ -6,7 +6,7 @@ import {Button} from '@material-ui/core';
 import Find from 'library/components/Find/Find';
 import Change from 'library/components/Change/Change';
 import Search from 'library/components/Search/Search';
-import ModalWarring from 'library/components/ModalWarring/ModalWarring';
+import ModalAddOrder from 'library/components/ModalAddOrder';
 import styles from './orders.scss';
 
 const Orders = () => {
@@ -50,7 +50,7 @@ const Orders = () => {
 					<Button onClick={handleClickOpen}>
 						Подать объявление
 					</Button>
-					<ModalWarring handleClose={handleClose} open={open} />
+					<ModalAddOrder handleClose={handleClose} open={open} />
 				</div>
 			</div>
 			<Switch>

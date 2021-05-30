@@ -3,14 +3,19 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import {useUserStore} from 'main/RootStoreProvider';
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 import styles from './login.scss';
 
 const Login = observer(() => {
 	const userStore = useUserStore();
+	const history = useHistory();
 
-	if (userStore.isAuth === true) return <Redirect to="/ad" />;
+	React.useEffect(() => {
+		if (userStore.isAuth) {
+			history.push('/ad');
+		}
+	}, [userStore.isAuth]);
 
 	const [email, setEmail] = React.useState('');
 	const [password, setPassword] = React.useState('');

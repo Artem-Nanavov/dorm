@@ -9,6 +9,7 @@ import WithHeader from 'library/components/wrappers/withHeader';
 import { useSnackbar } from 'notistack';
 import Petition from 'pages/Petition';
 import Orders from 'pages/Orders/Orders';
+import Page404 from 'pages/404';
 import {useRootStore} from './RootStoreProvider';
 
 const WithAuthOrders = WithAuth(Orders);
@@ -22,6 +23,7 @@ const WithLoaderAuth = withLoader(Authorization);
 const WithLoaderOrders = withLoader(WithHeaderOrders);
 const WithLoaderPetition = withLoader(WithHeaderPetition);
 const WithLoaderPageDev = withLoader(PageDev);
+const WithLoader404 = withLoader(Page404);
 
 const Routes = () => {
 	const { enqueueSnackbar } = useSnackbar();
@@ -44,6 +46,7 @@ const Routes = () => {
 				<Route path="/ad" component={WithLoaderOrders} />
 				<Route exact path="/petition" component={WithLoaderPetition} />
 				<Route exact path="/pagedev" component={WithLoaderPageDev} />
+				<Route exact path="/*" component={WithLoader404} />
 			</Switch>
 		</>
 	);
