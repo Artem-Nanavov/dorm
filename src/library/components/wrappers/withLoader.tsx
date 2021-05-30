@@ -15,13 +15,13 @@ const withLoader = (WrappedComponent: React.FunctionComponent) => {
 	const Content = observer(() => {
 		const userStore = useUserStore();
 
-		React.useEffect(() => {
+		/* React.useEffect(() => {
 			userStore.getUserInfo();
-		}, []);
+		}, []); */
 
 		return (
 			<>
-				{userStore.isLoadingAuth ? (
+				{!userStore.isLoadingAuth ? (
 					<div style={style}>
 						<Loader width="100px" />
 					</div>

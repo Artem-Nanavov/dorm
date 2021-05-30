@@ -1,6 +1,6 @@
 import React from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom';
-import Reg from 'pages/Authorization';
+import Reg from 'pages/Authorization/components/reg';
 import Authorization from 'pages/Authorization/components/auth/Login';
 import WithAuth from 'library/components/wrappers/withAuth';
 import withLoader from 'library/components/wrappers/withLoader';
@@ -8,6 +8,7 @@ import WithHeader from 'library/components/wrappers/withHeader';
 import { useSnackbar } from 'notistack';
 import Petition from 'pages/Petition';
 import Orders from 'pages/Orders/Orders';
+import Mistake from 'library/components/Mistake/Mistake';
 import {useRootStore} from './RootStoreProvider';
 
 const WithAuthOrders = WithAuth(Orders);
@@ -41,6 +42,7 @@ const Routes = () => {
 				<Route exact path="/reg" component={WithLoaderReg} />
 				<Route path="/ad" component={WithLoaderOrders} />
 				<Route exact path="/petition" component={WithLoaderPetition} />
+				<Route exact path="/mistake" component={Mistake} />
 			</Switch>
 		</>
 	);
