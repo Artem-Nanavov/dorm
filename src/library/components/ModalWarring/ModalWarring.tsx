@@ -64,6 +64,7 @@ const ModalWarring = ({handleClose, open}: Props) => {
 	const sendWarning = React.useCallback(() => {
 		rootStore.socket.emit('warning', {message: warningText});
 		handleClose();
+		setWarningText('');
 	}, [warningText]);
 
 	const styles = useStyles();

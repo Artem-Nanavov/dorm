@@ -51,7 +51,7 @@ const Petition = observer(() => {
 
 				<div style={s}>
 					{
-						petitionStore.petitions.map((pet) => (
+						petitionStore.petitions.slice(3).map((pet) => (
 							<div className={styles.petition}>
 								<div className={styles.description}>
 									<div className={styles.headPet}>{pet.title}</div>

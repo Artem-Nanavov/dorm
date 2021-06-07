@@ -9,6 +9,7 @@ import {
 	withStyles, makeStyles, createStyles,
 } from '@material-ui/core/styles';
 import {usePetitionStore} from 'main/RootStoreProvider';
+import Loader from '../loader';
 
 interface Props {
 	handleClose: any,
@@ -62,8 +63,10 @@ const ModalPetition = ({handleClose, open}: Props) => {
 
 	const [desc, setDesc] = React.useState('');
 	const [title, setTitle] = React.useState('');
+	const [isLoad, setIsLoad] = React.useState(false);
 
 	const createPetition = React.useCallback(() => {
+		setIsLoad(true);
 		petitionStore.createPet(title, desc);
 	}, [desc, title]);
 
@@ -75,31 +78,35 @@ const ModalPetition = ({handleClose, open}: Props) => {
 			aria-labelledby="alert-dialog-title"
 			aria-describedby="alert-dialog-description"
 		>
-			<div className={styles.root}>
-				<DialogTitle>Подача петициие</DialogTitle>
-				<DialogContent>
-					<CustomTextField
-						value={title}
-						onChange={(e) => setTitle(e.target.value)}
-						label="Заголовок петиции"
-						variant="outlined"
-					/>
-				</DialogContent>
-				<DialogContent>
-					<CustomTextField
-						value={desc}
-						onChange={(e) => setDesc(e.target.value)}
-						label="Описание петиции"
-						multiline
-						variant="outlined"
-					/>
-				</DialogContent>
-				<CustomDialogActions>
-					<CustomButton onClick={createPetition} color="primary">
-						Подать
-					</CustomButton>
-				</CustomDialogActions>
-			</div>
+			{
+				isLoad ? <Loader /> : (
+					<div className={styles.root}>
+						<DialogTitle>Подача петициие</DialogTitle>
+						<DialogContent>
+							<CustomTextField
+								value={title}
+								onChange={(e) => setTitle(e.target.value)}
+								label="Заголовок петиции"
+								variant="outlined"
+							/>
+						</DialogContent>
+						<DialogContent>
+							<CustomTextField
+								value={desc}
+								onChange={(e) => setDesc(e.target.value)}
+								label="Описание петиции"
+								multiline
+								variant="outlined"
+							/>
+						</DialogContent>
+						<CustomDialogActions>
+							<CustomButton onClick={createPetition} color="primary">
+								Подать
+							</CustomButton>
+						</CustomDialogActions>
+					</div>
+				)
+			}
 		</Dialog>
 	);
 };

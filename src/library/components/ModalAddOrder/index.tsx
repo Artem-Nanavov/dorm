@@ -14,8 +14,9 @@ import {useOrderStore} from 'main/RootStoreProvider';
 import {
 	InputLabel, Select, MenuItem,
 } from '@material-ui/core';
-import styles from './styles.scss';
 import { observer } from 'mobx-react-lite';
+import Loader from 'library/components/loader';
+import styles from './styles.scss';
 
 interface Props {
 	handleClose: any,
@@ -100,6 +101,8 @@ const ModalAddOrder = observer(({handleClose, open}: Props) => {
 	const stylesMUI = useStyles();
 	const history = useHistory();
 
+	const [isLoading, setIsLoading] = React.useState(false);
+
 	const [desc, setDesc] = React.useState('');
 	const [title, setTitle] = React.useState('');
 	const [type, setType] = React.useState<'search' | 'change' | 'find'>('find');
@@ -133,6 +136,7 @@ const ModalAddOrder = observer(({handleClose, open}: Props) => {
 	}, [files]);
 
 	const createOrder = React.useCallback(() => {
+		setIsLoading(true);
 		orderStore.createItem(title, desc, type, files);
 	}, [title, desc, files, type]);
 
@@ -155,61 +159,69 @@ const ModalAddOrder = observer(({handleClose, open}: Props) => {
 			aria-labelledby="alert-dialog-title"
 			aria-describedby="alert-dialog-description"
 		>
-			<div className={stylesMUI.root}>
-				<DialogTitle>Подача объявления</DialogTitle>
-				<DialogContent>
-					<CustomTextField
-						value={title}
-						onChange={(e) => setTitle(e.target.value)}
-						label="Заголовок объявления"
-						variant="outlined"
-					/>
-				</DialogContent>
-				<DialogContent>
-					<CustomTextField
-						value={desc}
-						onChange={(e) => setDesc(e.target.value)}
-						label="Описание объявления"
-						multiline
-						variant="outlined"
-					/>
-				</DialogContent>
+			{
+				isLoading ? (
+					<div className={styles.load}>
+						<Loader />
+					</div>
+				) : (
+					<div className={stylesMUI.root}>
+						<DialogTitle>Подача объявления</DialogTitle>
+						<DialogContent>
+							<CustomTextField
+								value={title}
+								onChange={(e) => setTitle(e.target.value)}
+								label="Заголовок объявления"
+								variant="outlined"
+							/>
+						</DialogContent>
+						<DialogContent>
+							<CustomTextField
+								value={desc}
+								onChange={(e) => setDesc(e.target.value)}
+								label="Описание объявления"
+								multiline
+								variant="outlined"
+							/>
+						</DialogContent>
 
-				<DialogContent>
-					<InputLabel htmlFor="outlined-age-native-simple">Тип объявления</InputLabel>
-					<Select
-						labelId="outlined-age-native-simple"
-						fullWidth
-						variant="outlined"
-						value={type}
-						onChange={handleChange}
-						defaultValue={type}
-						id="outlined-age-native-simple"
-					>
-						<MenuItem value="find">find</MenuItem>
-						<MenuItem value="change">change</MenuItem>
-						<MenuItem value="search">search</MenuItem>
-					</Select>
-				</DialogContent>
+						<DialogContent>
+							<InputLabel htmlFor="outlined-age-native-simple">Тип объявления</InputLabel>
+							<Select
+								labelId="outlined-age-native-simple"
+								fullWidth
+								variant="outlined"
+								value={type}
+								onChange={handleChange}
+								defaultValue={type}
+								id="outlined-age-native-simple"
+							>
+								<MenuItem value="find">find</MenuItem>
+								<MenuItem value="change">change</MenuItem>
+								<MenuItem value="search">search</MenuItem>
+							</Select>
+						</DialogContent>
 
-				<DialogContent>
-					<section className="container">
-						<div {...getRootProps({className: styles.form__imageUploader})}>
-							<input {...getInputProps()} />
-							<p>Drag &lsquo;n&lsquo; drop some files here, or click to select files</p>
-						</div>
-						<aside style={thumbsContainer}>
-							{thumbs}
-						</aside>
-					</section>
-				</DialogContent>
+						<DialogContent>
+							<section className="container">
+								<div {...getRootProps({className: styles.form__imageUploader})}>
+									<input {...getInputProps()} />
+									<p>Drag &lsquo;n&lsquo; drop some files here, or click to select files</p>
+								</div>
+								<aside style={thumbsContainer}>
+									{thumbs}
+								</aside>
+							</section>
+						</DialogContent>
 
-				<CustomDialogActions>
-					<CustomButton onClick={createOrder} color="primary">
-						Опубликовать
-					</CustomButton>
-				</CustomDialogActions>
-			</div>
+						<CustomDialogActions>
+							<CustomButton onClick={createOrder} color="primary">
+								Опубликовать
+							</CustomButton>
+						</CustomDialogActions>
+					</div>
+				)
+			}
 		</Dialog>
 	);
 });

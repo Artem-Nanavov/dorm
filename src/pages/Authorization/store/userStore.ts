@@ -30,6 +30,8 @@ class UserStore {
 
 	@observable isLoadingAuth: boolean = true;
 
+	@observable isLogout = false;	
+
 	@observable phrase: any = '';
 
 	constructor() {
@@ -107,6 +109,7 @@ class UserStore {
 			this.isLoading = true;
 
 			await createAxiosShit().post('/auth/logout');
+			this.isLogout = true;
 		} catch (e) {
 			console.log('logou user error: ', e.message);
 		} finally {

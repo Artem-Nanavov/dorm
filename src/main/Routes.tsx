@@ -11,7 +11,8 @@ import Petition from 'pages/Petition';
 import Orders from 'pages/Orders/Orders';
 import Page404 from 'pages/404';
 import Profile from 'pages/Profile';
-import {useRootStore} from './RootStoreProvider';
+import { observer } from 'mobx-react-lite';
+import {useRootStore, useUserStore} from './RootStoreProvider';
 
 const WithAuthOrders = WithAuth(Orders);
 const WithAuthPetition = WithAuth(Petition);
@@ -29,15 +30,22 @@ const WithLoaderPageDev = withLoader(PageDev);
 const WithLoader404 = withLoader(Page404);
 const WithLoaderProfile = withLoader(WithHeaderProfile);
 
-const Routes = () => {
+const Routes = observer(() => {
 	const { enqueueSnackbar } = useSnackbar();
 	const rootStore = useRootStore();
+	const userStore = useUserStore();
 
 	React.useEffect(() => {
 		rootStore.socket.on('on warning', (data: any) => {
 			enqueueSnackbar(data.message, {variant: 'warning'});
 		});
 	}, []);
+
+	React.useEffect(() => {
+		if (userStore.isLoadingAuth === false && userStore.isLogout === true) {
+			window.location.reload();
+		}
+	}, [userStore.isLogout, userStore.isLoadingAuth]);
 
 	return (
 		<>
@@ -55,6 +63,6 @@ const Routes = () => {
 			</Switch>
 		</>
 	);
-};
+});
 
 export default Routes;
